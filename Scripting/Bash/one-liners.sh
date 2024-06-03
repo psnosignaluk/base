@@ -32,3 +32,7 @@ openssl pkcs8 -in key.pem -topk8 -nocrypt -out key.pkcs8.pem
 
 # Create a PKCS8 compatible private key (Java) (better?)
 openssl pkey -in key.pem -out key.pkcs8.pem
+
+# OCSP verification
+openssl x509 -noout -ocsp_uri -in cert.pem
+openssl ocsp -issuer inermediate.pem -cert cert.pem -text -url http://path.to.ocsp -header "HOST"="fqdn.of.ocsp"
